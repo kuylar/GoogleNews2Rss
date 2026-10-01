@@ -1,0 +1,32 @@
+option csharp_namespace = "GoogleNews2Rss.Protobuf";
+
+message Topic {
+  required int32 i1 = 1;
+  required PublisherInfoWrapper pub = 5;
+}
+
+message PublisherInfoWrapper {
+  required int32 i1 = 1;
+  required PublisherInfo info = 5;
+}
+
+message PublisherInfo {
+  required int32 i1 = 1;
+  required string WebsiteInfoWrapperBase64 = 4;
+  required int32 i2 = 10;
+}
+
+message WebsiteInfoWrapper {
+  required int32 i1 = 1;
+  required WebsiteInfo website = 2;
+  required int32 i2 = 5;
+}
+
+message WebsiteInfo {
+  required int32 i1 = 1;
+  required Website info = 13;
+}
+
+message Website {
+  required string domain = 1;
+}

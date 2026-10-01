@@ -1,0 +1,42 @@
+﻿@using GoogleNews2Rss.Protobuf
+@model GoogleNews2Rss.Protobuf.Topic?
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+	<form method="get" asp-action="Index">
+		<div class="mb-3">
+			<input type="text" name="domain" class="form-control" placeholder="Enter website domain"/>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>
+
+@if (Model != null)
+{
+	<div>
+		@{
+			WebsiteInfoWrapper website = WebsiteInfoWrapper.Parser.ParseFrom(Utils.FromBase64Url(Model.Pub.Info.WebsiteInfoWrapperBase64)); 
+		}
+		<h1>Topic message details:</h1>
+		<table>
+			<thead>
+			<tr>
+				<td>Pos</td>
+				<td>Value</td>
+			</tr>
+			</thead>
+			<tbody>
+			<tr><td>topic.i1</td><td>@Model.I1</td></tr>
+			<tr><td>topic.pub.i1</td><td>@Model.Pub.I1</td></tr>
+			<tr><td>topic.pub.info.i1</td><td>@Model.Pub.Info.I1</td></tr>
+			<tr><td>topic.pub.info.i2</td><td>@Model.Pub.Info.I2</td></tr>
+			<tr><td>website.i1</td><td>@website.I1</td></tr>
+			<tr><td>website.i2</td><td>@website.I2</td></tr>
+			<tr><td>website.website.i1</td><td>@website.Website.I1</td></tr>
+			<tr><td>website.website.info.domain</td><td>@website.Website.Info.Domain</td></tr>
+			</tbody>
+		</table>
+	</div>
+}
